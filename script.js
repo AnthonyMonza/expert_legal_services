@@ -158,7 +158,7 @@ function App() {
   );
 }
 
-document.getElementById('appointmenrForm').
+document.getElementById('appointmentForm').
 addEventListener('submit', function(e) {
   e.preventDefault();
 
