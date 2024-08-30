@@ -1,7 +1,7 @@
-// script.js
+/* // script.js
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'; */
 import styled from 'styled-components';
 
 // ... (previous styled components remain the same)
@@ -158,7 +158,36 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+document.getElementById('appointmenrForm').
+addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
+
+  fetch('/submit-appointment', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  .then(response => response.json())
+  .then(result => {
+    if (result.success) {
+      alert('Appointment booked succesfully!');
+      this.reset();
+    } else {
+      alert('There was an error booking your appointment. Please try again.');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('There was an error booking your appointment. Please try again.');
+  });
+});
+
+/* ReactDOM.render(<App />, document.getElementById('root'));
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('appointment-form');
 
@@ -193,4 +222,4 @@ document.addEventListener('DOMContentLoaded', function() {
       // Reset the form
       form.reset();
   });
-});
+}); */
