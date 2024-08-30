@@ -165,7 +165,7 @@ addEventListener('submit', function(e) {
   const formData = new FormData(this);
   const data = Object.fromEntries(formData.entries());
 
-  fetch('/submit-appointment', {
+  fetch('/api/submit-appointment', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -175,15 +175,15 @@ addEventListener('submit', function(e) {
   .then(response => response.json())
   .then(result => {
     if (result.success) {
-      alert('Appointment booked succesfully!');
+      alert('Appointment booked succesfully! We will contact you shortly to confirm.');
       this.reset();
     } else {
-      alert('There was an error booking your appointment. Please try again.');
+      alert('There was an error booking your appointment. Please try again or contact us directly.');
     }
   })
   .catch(error => {
     console.error('Error:', error);
-    alert('There was an error booking your appointment. Please try again.');
+    alert('There was an error booking your appointment. Please try again or contact us directly.');
   });
 });
 
